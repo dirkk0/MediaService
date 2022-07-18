@@ -24,6 +24,37 @@ public class MediaPlaybackService extends Service {
     {
 
         @Override
+        public void onPlay() {
+            super.onPlay();
+            Toast.makeText(getApplication(),"Play Button is pressed!",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            Toast.makeText(getApplication(),"Pause Button is pressed!",Toast.LENGTH_SHORT).show();
+        }
+
+//        @Override
+//        public void onSkipToNext() {
+//            super.onSkipToNext();
+//            Toast.makeText(getApplication(),"Next Button is pressed!",Toast.LENGTH_SHORT).show();
+//        }
+//
+//        @Override
+//        public void onSkipToPrevious() {
+//            super.onSkipToPrevious();
+//            Toast.makeText(getApplication(),"Previous Button is pressed!",Toast.LENGTH_SHORT).show();
+//        }
+
+        @Override
+        public void onStop() {
+            super.onStop();
+            Toast.makeText(getApplication(),"Stop Button is pressed!",Toast.LENGTH_SHORT).show();
+        }
+
+
+        @Override
         public boolean onMediaButtonEvent(Intent mediaButtonEvent) {
             String intentAction = mediaButtonEvent.getAction();
 
@@ -43,10 +74,10 @@ public class MediaPlaybackService extends Service {
                                 // code for next
                                 Toast.makeText(getApplication(),"Next Button is pressed!",Toast.LENGTH_SHORT).show();
                                 return true;
-                            case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
-                                // code for play/pause
-                                Toast.makeText(getApplication(),"Play Button is pressed!",Toast.LENGTH_SHORT).show();
-                                return true;
+//                            case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+//                                // code for play/pause
+//                                Toast.makeText(getApplication(),"Play Button is pressed!",Toast.LENGTH_SHORT).show();
+//                                return true;
                             case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
                                 // code for previous
                                 Toast.makeText(getApplication(),"Prev Button is pressed!",Toast.LENGTH_SHORT).show();
@@ -77,7 +108,7 @@ public class MediaPlaybackService extends Service {
 
     @Override
     public void onCreate() {
-        Toast.makeText(this, "My Service Created", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "My Service Created", Toast.LENGTH_SHORT).show();
         Log.e("SERVICE", "onCreate");
 
         mediaSessionCompat = new MediaSessionCompat(this, "MEDIA");
@@ -98,7 +129,7 @@ public class MediaPlaybackService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "My Service Stopped", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "My Service Stopped", Toast.LENGTH_SHORT).show();
         Log.e("SERVICE", "onDestroy");
         mediaSessionCompat.release();
     }
